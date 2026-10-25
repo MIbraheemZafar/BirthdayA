@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday 🎂</title>
+<style>
+:root{--bg:#fff4f7;--fg:#4a1d3a;--card:#fff;--ac:#e8407a;--ac2:#f5a623;--sh:rgba(120,30,80,.25);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1020;--fg:#ffe8f1;--card:#2b1830;--sh:rgba(0,0,0,.5)}}
+:root[data-theme="dark"]{--bg:#1d1020;--fg:#ffe8f1;--card:#2b1830;--sh:rgba(0,0,0,.5)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;overflow:hidden}
+body{background:var(--bg);color:var(--fg);font-family:Georgia,serif;text-align:center}
+.stage{position:absolute;inset:0;padding:calc(124px + env(safe-area-inset-top,0px)) 16px 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(8px,2vh,18px);opacity:0;visibility:hidden;transition:opacity .7s,visibility .7s}
+.stage.on{opacity:1;visibility:visible}
+h1{position:fixed;top:calc(48px + env(safe-area-inset-top,0px));left:0;right:0;z-index:4;padding:0 56px;font-size:clamp(1.5rem,7vw,2.6rem);margin:0;background:linear-gradient(90deg,var(--ac),var(--ac2),var(--ac));background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 4s linear infinite}
+@keyframes flow{to{background-position:200%}}
+.typed{font-size:clamp(1rem,4vw,1.3rem);min-height:1.6em;font-style:italic}
+.typed::after{content:'|';animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0}}
+.hint{opacity:.7;font-size:.9rem;margin:0}
+.bal{position:fixed;bottom:-80px;font-size:2.2rem;animation:up linear forwards;pointer-events:none;z-index:5}
+@keyframes up{to{transform:translateY(-120vh) rotate(20deg)}}
+.conf{position:fixed;top:-20px;width:9px;height:14px;animation:fall linear forwards;pointer-events:none;z-index:5}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+/* card */
+.card{--w:min(86vw,340px,calc((100dvh - 300px)*.78));width:var(--w);height:calc(var(--w)*1.3);position:relative;perspective:1200px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.inside,.cover{position:absolute;inset:0;border-radius:14px;box-shadow:0 10px 30px var(--sh)}
+.inside{background:var(--card);display:flex;align-items:center;justify-content:center;padding:6%;font-size:clamp(.95rem,4.2vw,1.2rem);line-height:1.7;overflow:hidden}
+.cover{background:linear-gradient(135deg,var(--ac),#ff8fb1 60%,var(--ac2));transform-origin:left center;transition:transform .9s,opacity .4s .5s;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:clamp(1.2rem,6vw,1.7rem)}
+.cover .big{font-size:clamp(3rem,16vw,4.5rem)}
+.card.open .cover{transform:rotateY(-110deg);opacity:0;pointer-events:none}
+button{font:inherit;background:var(--ac);color:#fff;border:0;border-radius:99px;padding:10px 22px;cursor:pointer}
+.nav{display:flex;gap:14px;align-items:center}
+.nav button:disabled{opacity:.4}
+/* jokes */
+.joke{width:min(92vw,460px);min-height:min(46dvh,320px);background:var(--card);border-left:10px solid var(--ac);border-radius:12px;box-shadow:0 12px 30px var(--sh);padding:22px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-size:clamp(1.05rem,4.6vw,1.35rem);line-height:1.6}
+.joke .e{font-size:clamp(2.6rem,14vw,4rem);animation:pop .6s}
+.joke .t{animation:pop .6s}
+@keyframes pop{from{opacity:0;transform:scale(.92) rotate(-3deg)}}
+/* prayer */
+.pcard{width:min(92vw,420px);background:var(--card);border:1.5px solid var(--sh);border-radius:26px;padding:12px 12px 16px;box-shadow:0 12px 30px var(--sh);cursor:pointer;-webkit-tap-highlight-color:transparent;display:flex;flex-direction:column;gap:12px}
+.pimg{background:linear-gradient(135deg,#f3e3df,#fbf3ec);transition:opacity .45s;width:100%;height:clamp(110px,26dvh,200px);border-radius:18px;overflow:hidden}
+.pimg svg{width:100%;height:100%;display:block}
+.pbody{padding:6px 8px 0;display:flex;flex-direction:column;gap:12px;transition:opacity .45s,transform .45s}
+.pimg.fade{opacity:0}
+.pbody.fade{opacity:0;transform:translateY(8px)}
+.ptext{font-size:clamp(1rem,4.4vw,1.3rem);line-height:1.75;margin:0}
+.pfoot{font-size:.85rem;opacity:.7;margin:0;line-height:1.4}
+.pcard{transition:opacity .6s,transform .6s}
+.pcard.closed{opacity:0;transform:scale(.85);pointer-events:none}
+#go{font-size:1.15rem;padding:14px 30px;box-shadow:0 8px 22px var(--sh);animation:pop .6s}
+.fin{font-size:clamp(1.5rem,7vw,2.2rem);line-height:1.5;animation:pop .8s}
+.fin .e{font-size:clamp(3.5rem,18vw,5rem);display:block}
+.dots{display:flex;gap:8px;justify-content:center}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--sh);transition:.3s}
+.dots i.on{background:var(--ac);transform:scale(1.25)}
+/* music toggle */
+#mute{position:fixed;top:calc(44px + env(safe-area-inset-top,0px));right:10px;z-index:10;padding:8px 12px;font-size:1.1rem;opacity:.85}
+</style></head><body>
+
+<button id="mute" aria-label="Toggle music">🔊</button>
+
+<h1 id="title">Happy Birthday, Arass!</h1>
+
+<div class="stage on" id="s1">
+ <div class="typed" id="typed"></div>
+ <div class="card" id="card">
+  <div class="inside" id="msg"></div>
+  <div class="cover"><div class="big">🎁</div>For You<small>tap to open</small></div>
+ </div>
+ <p class="hint" id="h1">Tap the card to open</p>
+</div>
+
+<div class="stage" id="s2">
+ <h2 style="margin:0">Birthday Laughs 😂</h2>
+ <div class="joke"><div class="e" id="je"></div><div class="t" id="jt"></div></div>
+ <div class="nav"><button id="prev">‹</button><span id="pn"></span><button id="next">Next ›</button></div>
+</div>
+
+<div class="stage" id="s3">
+ <div class="pcard" id="pcard">
+  <div class="pimg" id="pimg"></div>
+  <div class="pbody" id="pbody"><p class="ptext" id="ptext"></p><p class="pfoot" id="pfoot"></p></div>
+  <div class="dots" id="dots"><i></i><i></i><i></i><i></i></div>
+ </div>
+ <p class="hint" id="ph"></p>
+ <button id="go" hidden>Start the Celebration 🎉</button>
+ <div class="fin" id="fin" hidden><span class="e">🎂</span>Happy Birthday, Arass!<br>🎉 🎈 💖</div>
+</div>
+
+<script>
+const NAME="Arass";
+const $=id=>document.getElementById(id);
+if(NAME)$('title').textContent="Happy Birthday, "+NAME+"!";
+function typeInto(el,text,speed,done){let i=0;el.textContent='';(function t(){el.textContent=text.slice(0,++i);if(i<text.length)setTimeout(t,speed);else done&&done()})()}
+function show(n){document.querySelectorAll('.stage').forEach(s=>s.classList.remove('on'));$('s'+n).classList.add('on')}
+
+/* ===== Birthday song (Web Audio, loops until the end of the prayer) ===== */
+let actx=null,master=null,playing=false,muted=false,songTimer=null;
+const N={G4:392,A4:440,B4:493.88,C5:523.25,D5:587.33,E5:659.25,F5:698.46,G5:783.99};
+const SONG=[["G4",.75],["G4",.25],["A4",1],["G4",1],["C5",1],["B4",2],
+ ["G4",.75],["G4",.25],["A4",1],["G4",1],["D5",1],["C5",2],
+ ["G4",.75],["G4",.25],["G5",1],["E5",1],["C5",1],["B4",1],["A4",2],
+ ["F5",.75],["F5",.25],["E5",1],["C5",1],["D5",1],["C5",3]];
+function note(freq,t,dur){
+ [["triangle",1,.5],["sine",2,.12]].forEach(([type,mul,vol])=>{
+  const o=actx.createOscillator(),g=actx.createGain();o.type=type;o.frequency.value=freq*mul;
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.03);
+  g.gain.exponentialRampToValueAtTime(.001,t+dur*.95);
+  o.connect(g);g.connect(master);o.start(t);o.stop(t+dur);});
+}
+function scheduleSong(){
+ if(!playing)return;
+ const beat=.5;let t=actx.currentTime+.05;
+ SONG.forEach(([n,b])=>{note(N[n],t,b*beat);t+=b*beat});
+ songTimer=setTimeout(()=>{ if(playing) setTimeout(scheduleSong,0) },(t-actx.currentTime-.05)*1000+700);
+}
+function startMusic(){
+ if(playing)return;
+ try{
+  actx=actx||new (window.AudioContext||window.webkitAudioContext)();
+  if(!master){master=actx.createGain();master.gain.value=muted?0:.35;master.connect(actx.destination)}
+  actx.resume().then(()=>{ if(actx.state==='running'&&!playing){playing=true;scheduleSong()} }).catch(()=>{});
+ }catch(e){}
+}
+function fadeOutMusic(){
+ if(!playing||!master)return;
+ master.gain.cancelScheduledValues(actx.currentTime);
+ master.gain.setValueAtTime(master.gain.value,actx.currentTime);
+ master.gain.linearRampToValueAtTime(0,actx.currentTime+5);
+ setTimeout(()=>{playing=false;clearTimeout(songTimer)},5200);
+}
+$('mute').onclick=e=>{e.stopPropagation();muted=!muted;$('mute').textContent=muted?'🔇':'🔊';
+ if(master)master.gain.value=muted?0:.35; if(!muted)startMusic()};
+// Try on page open; browsers may block until the first touch, so retry on first interaction
+startMusic();
+['pointerdown','touchstart','click','keydown'].forEach(ev=>document.addEventListener(ev,startMusic,{passive:true}));
+
+/* wishes */
+const wishes=["May your day be wrapped in joy ✨","May every dream bloom this year 🌷","You are loved more than words can say 💖"];
+let wi=0,ci=0,del=false,run=true;
+(function type(){if(!run)return;const w=wishes[wi];$('typed').textContent=w.slice(0,ci);
+ if(!del&&ci<w.length){ci++;setTimeout(type,65)}else if(!del){del=true;setTimeout(type,1400)}
+ else if(ci>0){ci--;setTimeout(type,28)}else{del=false;wi=(wi+1)%wishes.length;setTimeout(type,300)}})();
+function party(){const e=['🎈','🎉','🎊','💖','🎈'],c=['#e8407a','#f5a623','#5ec2ff','#8be28b','#b184ff'];
+ for(let i=0;i<12;i++){const b=document.createElement('div');b.className='bal';b.textContent=e[i%5];b.style.left=Math.random()*92+'vw';b.style.animationDuration=(4+Math.random()*3)+'s';b.style.animationDelay=Math.random()*1.2+'s';document.body.appendChild(b);setTimeout(()=>b.remove(),8500)}
+ for(let i=0;i<50;i++){const d=document.createElement('div');d.className='conf';d.style.left=Math.random()*100+'vw';d.style.background=c[i%5];d.style.animationDuration=(2+Math.random()*3)+'s';document.body.appendChild(d);setTimeout(()=>d.remove(),5500)}}
+setTimeout(party,500);
+
+/* card: tap 1 opens + types message; tap 2 closes then shows jokes */
+const cardText="Wishing you a day filled with love, laughter and everything that makes your heart smile. You make the world brighter — never forget it! 🌸";
+let cs=0,busy=false;
+$('card').onclick=()=>{if(busy)return;
+ if(cs===0){busy=true;cs=1;$('card').classList.add('open');$('h1').textContent='';party();
+  setTimeout(()=>typeInto($('msg'),cardText,38,()=>{busy=false;$('h1').textContent='Tap the card to close'}),700)}
+ else{busy=true;cs=2;$('card').classList.remove('open');$('h1').textContent='';
+  setTimeout(()=>{run=false;show(2);renderJoke()},1000)}};
+
+/* funny jokes & quotes */
+const JOKES=[
+ ["🎂","Age is just a number… a really big, scary number when you try to fit the candles on the cake."],
+ ["🔥","Don't worry about getting older. You're still young enough to party and old enough to leave early."],
+ ["😂","I'd say 'Happy Birthday' with a candle for every year, but the fire department said no."],
+ ["🧁","Why do birthdays have so many candles? Because the cake can't afford a fire extinguisher!"],
+ ["🤑","Born to rich, forced to ask for a birthday treat. 😂"],
+ ["😎","You're not old, you're a classic. Limited edition. Slightly dented, but still premium."],
+ ["🍰","Birthdays are good for you. Statistics show that people who have the most birthdays live the longest!"],
+ ["🎈","Today you're allowed to eat cake for breakfast. Tomorrow you can go back to pretending you're on a diet."]
+];
+let jp=0;
+function renderJoke(){
+ $('je').textContent=JOKES[jp][0];$('jt').textContent=JOKES[jp][1];
+ // restart pop animation
+ [$('je'),$('jt')].forEach(el=>{el.style.animation='none';void el.offsetWidth;el.style.animation=''});
+ $('pn').textContent=(jp+1)+' / '+JOKES.length;
+ $('prev').disabled=jp===0;
+ $('next').textContent=jp===JOKES.length-1?'Pray 🤲':'Next ›'}
+$('prev').onclick=()=>{if(jp>0){jp--;renderJoke()}};
+$('next').onclick=()=>{if(jp<JOKES.length-1){jp++;renderJoke();if(jp%2===0)party()}else{show(3);startPrayer()}};
+
+/* prayer */
+const PRAYER_IMAGES=[]; // OPTIONAL: your own photos for the 4 prayers, e.g. ["1.jpg","2.jpg","3.jpg","4.jpg"] (same folder as this file)
+const SCENES=[`<svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3e3df"/><stop offset="1" stop-color="#fbf3ec"/></linearGradient><filter id="bl"><feGaussianBlur stdDeviation="9"/></filter></defs><rect width="400" height="220" fill="url(#pbg)"/><g filter="url(#bl)" opacity=".8"><circle cx="360" cy="40" r="60" fill="#fff"/><circle cx="350" cy="190" r="50" fill="#ecd3cb"/><circle cx="30" cy="20" r="40" fill="#d9b2b0"/></g><g fill="#b9c4a8" opacity=".85"><ellipse cx="40" cy="190" rx="40" ry="14" transform="rotate(-25 40 190)"/><ellipse cx="190" cy="205" rx="40" ry="13" transform="rotate(15 190 205)"/><ellipse cx="320" cy="120" rx="34" ry="12" transform="rotate(-40 320 120)"/></g><ellipse cx="145.0" cy="115.0" rx="43.4" ry="36.9" transform="rotate(90 145.0 115.0)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="127.5" cy="145.3" rx="43.4" ry="36.9" transform="rotate(150 127.5 145.3)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="92.5" cy="145.3" rx="43.4" ry="36.9" transform="rotate(210 92.5 145.3)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="75.0" cy="115.0" rx="43.4" ry="36.9" transform="rotate(270 75.0 115.0)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="92.5" cy="84.7" rx="43.4" ry="36.9" transform="rotate(330 92.5 84.7)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="127.5" cy="84.7" rx="43.4" ry="36.9" transform="rotate(390 127.5 84.7)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="136.3" cy="124.6" rx="35.0" ry="29.8" transform="rotate(110 136.3 124.6)" fill="#f7e4dd" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="109.0" cy="143.0" rx="35.0" ry="29.8" transform="rotate(182 109.0 143.0)" fill="#f7e4dd" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="83.1" cy="122.7" rx="35.0" ry="29.8" transform="rotate(254 83.1 122.7)" fill="#f7e4dd" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="94.3" cy="91.8" rx="35.0" ry="29.8" transform="rotate(326 94.3 91.8)" fill="#f7e4dd" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="127.2" cy="92.9" rx="35.0" ry="29.8" transform="rotate(398 127.2 92.9)" fill="#f7e4dd" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="124.8" cy="129.8" rx="26.6" ry="22.6" transform="rotate(135 124.8 129.8)" fill="#fbeee8" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="95.2" cy="129.8" rx="26.6" ry="22.6" transform="rotate(225 95.2 129.8)" fill="#fbeee8" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="95.2" cy="100.2" rx="26.6" ry="22.6" transform="rotate(315 95.2 100.2)" fill="#fbeee8" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="124.8" cy="100.2" rx="26.6" ry="22.6" transform="rotate(405 124.8 100.2)" fill="#fbeee8" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="114.8" cy="128.2" rx="18.2" ry="15.5" transform="rotate(160 114.8 128.2)" fill="#f3dad3" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="96.2" cy="112.6" rx="18.2" ry="15.5" transform="rotate(280 96.2 112.6)" fill="#f3dad3" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="119.0" cy="104.3" rx="18.2" ry="15.5" transform="rotate(400 119.0 104.3)" fill="#f3dad3" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><path d="M100.2 115.0a9.8 9.8 0 1 1 14.0 7.0" fill="none" stroke="#d2a9a3" stroke-width="1.6"/><circle cx="110" cy="115" r="7.0" fill="#e5c3bc"/><ellipse cx="291.0" cy="86.0" rx="28.5" ry="24.2" transform="rotate(90 291.0 86.0)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="279.5" cy="105.9" rx="28.5" ry="24.2" transform="rotate(150 279.5 105.9)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="256.5" cy="105.9" rx="28.5" ry="24.2" transform="rotate(210 256.5 105.9)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="245.0" cy="86.0" rx="28.5" ry="24.2" transform="rotate(270 245.0 86.0)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="256.5" cy="66.1" rx="28.5" ry="24.2" transform="rotate(330 256.5 66.1)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="279.5" cy="66.1" rx="28.5" ry="24.2" transform="rotate(390 279.5 66.1)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="285.3" cy="92.3" rx="23.0" ry="19.6" transform="rotate(110 285.3 92.3)" fill="#f7e4dd" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="267.4" cy="104.4" rx="23.0" ry="19.6" transform="rotate(182 267.4 104.4)" fill="#f7e4dd" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="250.3" cy="91.1" rx="23.0" ry="19.6" transform="rotate(254 250.3 91.1)" fill="#f7e4dd" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="257.7" cy="70.7" rx="23.0" ry="19.6" transform="rotate(326 257.7 70.7)" fill="#f7e4dd" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="279.3" cy="71.5" rx="23.0" ry="19.6" transform="rotate(398 279.3 71.5)" fill="#f7e4dd" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="277.8" cy="95.8" rx="17.5" ry="14.9" transform="rotate(135 277.8 95.8)" fill="#fbeee8" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="258.2" cy="95.8" rx="17.5" ry="14.9" transform="rotate(225 258.2 95.8)" fill="#fbeee8" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="258.2" cy="76.2" rx="17.5" ry="14.9" transform="rotate(315 258.2 76.2)" fill="#fbeee8" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="277.8" cy="76.2" rx="17.5" ry="14.9" transform="rotate(405 277.8 76.2)" fill="#fbeee8" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="271.1" cy="94.6" rx="12.0" ry="10.2" transform="rotate(160 271.1 94.6)" fill="#f3dad3" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="258.9" cy="84.4" rx="12.0" ry="10.2" transform="rotate(280 258.9 84.4)" fill="#f3dad3" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="273.9" cy="79.0" rx="12.0" ry="10.2" transform="rotate(400 273.9 79.0)" fill="#f3dad3" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><path d="M261.6 86.0a6.4 6.4 0 1 1 9.2 4.6" fill="none" stroke="#d2a9a3" stroke-width="1.6"/><circle cx="268" cy="86" r="4.6" fill="#e5c3bc"/><ellipse cx="345.0" cy="170.0" rx="18.6" ry="15.8" transform="rotate(90 345.0 170.0)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="337.5" cy="183.0" rx="18.6" ry="15.8" transform="rotate(150 337.5 183.0)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="322.5" cy="183.0" rx="18.6" ry="15.8" transform="rotate(210 322.5 183.0)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="315.0" cy="170.0" rx="18.6" ry="15.8" transform="rotate(270 315.0 170.0)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="322.5" cy="157.0" rx="18.6" ry="15.8" transform="rotate(330 322.5 157.0)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="337.5" cy="157.0" rx="18.6" ry="15.8" transform="rotate(390 337.5 157.0)" fill="#f1d6cf" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="341.3" cy="174.1" rx="15.0" ry="12.8" transform="rotate(110 341.3 174.1)" fill="#f7e4dd" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="329.6" cy="182.0" rx="15.0" ry="12.8" transform="rotate(182 329.6 182.0)" fill="#f7e4dd" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="318.5" cy="173.3" rx="15.0" ry="12.8" transform="rotate(254 318.5 173.3)" fill="#f7e4dd" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="323.3" cy="160.1" rx="15.0" ry="12.8" transform="rotate(326 323.3 160.1)" fill="#f7e4dd" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="337.4" cy="160.5" rx="15.0" ry="12.8" transform="rotate(398 337.4 160.5)" fill="#f7e4dd" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="336.4" cy="176.4" rx="11.4" ry="9.7" transform="rotate(135 336.4 176.4)" fill="#fbeee8" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="323.6" cy="176.4" rx="11.4" ry="9.7" transform="rotate(225 323.6 176.4)" fill="#fbeee8" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="323.6" cy="163.6" rx="11.4" ry="9.7" transform="rotate(315 323.6 163.6)" fill="#fbeee8" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="336.4" cy="163.6" rx="11.4" ry="9.7" transform="rotate(405 336.4 163.6)" fill="#fbeee8" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="332.1" cy="175.6" rx="7.8" ry="6.6" transform="rotate(160 332.1 175.6)" fill="#f3dad3" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="324.1" cy="169.0" rx="7.8" ry="6.6" transform="rotate(280 324.1 169.0)" fill="#f3dad3" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><ellipse cx="333.9" cy="165.4" rx="7.8" ry="6.6" transform="rotate(400 333.9 165.4)" fill="#f3dad3" stroke="#d9b4ad" stroke-width="1" stroke-opacity=".6"/><path d="M325.8 170.0a4.2 4.2 0 1 1 6.0 3.0" fill="none" stroke="#d2a9a3" stroke-width="1.6"/><circle cx="330" cy="170" r="3.0" fill="#e5c3bc"/><circle cx="190" cy="36" r="9" fill="#d7a9aa"/><circle cx="206" cy="28" r="6" fill="#e2bcbb"/></svg>`,`<svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a4880"/><stop offset=".6" stop-color="#b78fb0"/><stop offset="1" stop-color="#f1c3c3"/></linearGradient><mask id="m1"><rect width="400" height="220" fill="#fff"/><circle cx="292" cy="72" r="38" fill="#000"/></mask><filter id="b1"><feGaussianBlur stdDeviation="10"/></filter></defs><rect width="400" height="220" fill="url(#g1)"/><circle cx="262" cy="86" r="64" fill="#fff3d6" opacity=".35" filter="url(#b1)"/><circle cx="262" cy="86" r="42" fill="#fff6e0" mask="url(#m1)"/><g fill="#fff8e8"><circle cx="70" cy="40" r="2.5"/><circle cx="130" cy="80" r="2"/><circle cx="190" cy="30" r="3"/><circle cx="340" cy="150" r="2"/><circle cx="50" cy="130" r="2"/><circle cx="360" cy="40" r="2.5"/><circle cx="110" cy="160" r="1.8"/></g><g fill="#fff8e8"><path d="M330 70l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/><path d="M150 120l2.5 7 7 2.5-7 2.5-2.5 7-2.5-7-7-2.5 7-2.5z"/><path d="M60 80l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></g></svg>`,`<svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4c9bd"/><stop offset=".7" stop-color="#fbe9dc"/><stop offset="1" stop-color="#fdf4ea"/></linearGradient><filter id="b2"><feGaussianBlur stdDeviation="8"/></filter></defs><rect width="400" height="220" fill="url(#g2)"/><circle cx="320" cy="60" r="34" fill="#fff" opacity=".7" filter="url(#b2)"/><g fill="#c7a3a6"><path d="M130 190V140a70 70 0 0 1 140 0v50z"/><rect x="196" y="58" width="8" height="22"/><circle cx="200" cy="54" r="6"/><rect x="82" y="86" width="16" height="104"/><path d="M80 86l10-26 10 26z"/><rect x="302" y="86" width="16" height="104"/><path d="M300 86l10-26 10 26z"/><rect x="0" y="190" width="400" height="30" fill="#b9979c"/></g><g fill="#f9e6dc"><path d="M180 190v-24a20 20 0 0 1 40 0v24z"/></g><circle cx="90" cy="100" r="3" fill="#f9e6dc"/><circle cx="310" cy="100" r="3" fill="#f9e6dc"/><g fill="#fff"><circle cx="60" cy="40" r="2"/><circle cx="350" cy="30" r="2"/><circle cx="240" cy="30" r="1.6"/></g></svg>`,`<svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2d4dc"/><stop offset="1" stop-color="#fbeadb"/></linearGradient><radialGradient id="gl3"><stop offset="0" stop-color="#ffd98a" stop-opacity=".95"/><stop offset="1" stop-color="#ffd98a" stop-opacity="0"/></radialGradient></defs><rect width="400" height="220" fill="url(#g3)"/><g stroke="#b98a7e" stroke-width="1.5"><line x1="90" y1="0" x2="90" y2="56"/><line x1="200" y1="0" x2="200" y2="86"/><line x1="310" y1="0" x2="310" y2="50"/></g><g><circle cx="90" cy="100" r="58" fill="url(#gl3)"/><circle cx="200" cy="140" r="64" fill="url(#gl3)"/><circle cx="310" cy="94" r="56" fill="url(#gl3)"/></g><g fill="#e9a65a" stroke="#b9786a" stroke-width="2"><rect x="72" y="56" width="36" height="56" rx="12"/><rect x="180" y="86" width="40" height="62" rx="13"/><rect x="292" y="50" width="36" height="56" rx="12"/></g><g fill="#b9786a"><rect x="80" y="50" width="20" height="8" rx="3"/><rect x="190" y="80" width="20" height="8" rx="3"/><rect x="300" y="44" width="20" height="8" rx="3"/></g><g fill="#fff7e0" opacity=".9"><circle cx="40" cy="170" r="2.2"/><circle cx="130" cy="190" r="2"/><circle cx="270" cy="188" r="2.4"/><circle cx="360" cy="160" r="2"/><circle cx="240" cy="40" r="1.8"/></g></svg>`];
+const PRAYERS=[
+ ["Beyond all the birthday wishes and laughter, I sincerely pray that Allah fills your life with peace, protects your heart, eases your difficulties, and blesses you with the happiness you truly deserve.","Ameen. 🤍"],
+ ["May Allah heal every part of your heart that life has hurt, protect your kindness through every hardship, and replace your painful lessons with peace. May He give you the strength to walk away from what isn't right and always guide you towards what is best for you. Ameen. 🤍",""],
+ ["May Allah keep your heart soft, protect the goodness within you, and never let life's hardships change you for the worse. May He fill your heart with peace, kindness, and the wisdom to always choose what is right. Ameen. 🤍",""],
+ ["May Allah protect you through every trial, give you strength in weakness and clarity in confusion, and never leave you without His guidance. May He protect your heart from what harms you and always lead you towards what is right and best for you. Ameen. 🤍",""]
+];
+let pi=0,pdone=false,pbusy=false;
+function showPrayer(i,instant){
+ const b=$('pbody'),im=$('pimg');
+ const apply=()=>{$('ptext').textContent=PRAYERS[i][0];$('pfoot').textContent=PRAYERS[i][1];
+  const src=PRAYER_IMAGES[i]||('data:image/svg+xml;charset=utf-8,'+encodeURIComponent(SCENES[i%SCENES.length]));
+  im.innerHTML=`<img src="${src}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">`;
+  document.querySelectorAll('#dots i').forEach((d,k)=>d.classList.toggle('on',k===i));
+  $('ph').textContent=i<PRAYERS.length-1?'Tap the card for the next prayer':'Tap the card to close it';
+  b.classList.remove('fade');im.classList.remove('fade');pbusy=false};
+ if(instant){apply();return}
+ pbusy=true;b.classList.add('fade');im.classList.add('fade');setTimeout(apply,450)}
+function startPrayer(){pi=0;pdone=false;showPrayer(0,true)}
+$('pcard').onclick=()=>{
+ if(pbusy||pdone)return;
+ if(pi<PRAYERS.length-1){pi++;showPrayer(pi)}
+ else{pdone=true;$('ph').textContent='';$('pcard').classList.add('closed');
+  setTimeout(()=>{$('pcard').style.display='none';$('go').hidden=false},650)}};
+$('go').onclick=()=>{
+ $('go').hidden=true;$('fin').hidden=false;
+ party();setTimeout(party,1800);setTimeout(party,3600);setTimeout(party,5400);
+ setTimeout(fadeOutMusic,9000)};
+</script>
+</body></html>
